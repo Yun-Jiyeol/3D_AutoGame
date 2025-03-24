@@ -1,9 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
+public enum PlayerNowMove
+{
+    Idle,
+    Move,
+    Fight
+}
 
 public class Player : MonoBehaviour
 {
+    public NavMeshAgent agent;
+    public PlayerMove playermove;
+    public PlayerAttack playerAttack;
+
     [Header("Stat")]
     public float Hp;
     public float MaxHp;
@@ -16,6 +28,8 @@ public class Player : MonoBehaviour
     public float Speed;
     public float CriticalRate;
 
+    public PlayerNowMove playernowmove;
+
     [Header("Wallet")]
     public int Gold;
     public int Dia;
@@ -23,6 +37,12 @@ public class Player : MonoBehaviour
     private void Start()
     {
         GameManager.instance.player = this;
+
+        playernowmove = PlayerNowMove.Idle;
+
+        agent = GetComponent<NavMeshAgent>();
+        playermove = GetComponent<PlayerMove>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     public void GetDamage(float damage)
@@ -44,5 +64,11 @@ public class Player : MonoBehaviour
             Level++;
             MaxEx = (int)(MaxEx * 1.5f);
         }
+    }
+
+    public void GetGoldDia(int gold, int dia)
+    {
+        Gold += gold;
+        Dia += dia;
     }
 }

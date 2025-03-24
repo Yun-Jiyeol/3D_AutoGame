@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public MonsterStat minibossStat;
     public MonsterStat bossStat;
 
-    private bool isSpawned = false;
     private Vector3 normalmonsterSize = new Vector3(3, 3, 3);
     private Vector3 minibossmonsterSize = new Vector3(5, 5, 5);
     private Vector3 bossmonsterSize = new Vector3(1.5f, 1.5f, 1.5f);
@@ -28,10 +27,12 @@ public class GameManager : MonoBehaviour
     public GameObject PlayerStartPosition;
     public GameObject PlayerEndPosition;
 
+    private GameObject spawnposition;
+
     [Header("Stage")]
     public int Stage;
 
-    private List<GameObject> MonsterInStage = new List<GameObject>();
+    public List<GameObject> MonsterInStage = new List<GameObject>();
 
     private void Awake()
     {
@@ -43,17 +44,26 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!isSpawned)
+        if(MonsterInStage.Count == 0)
         {
-            isSpawned = true;
+            player.playernowmove = PlayerNowMove.Idle;
             SpawnMonster();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(player.playernowmove == PlayerNowMove.Idle && MonsterInStage.Count != 0)
+        {
+            player.playermove.ChasePosition(spawnposition.transform.position);
+            player.playernowmove = PlayerNowMove.Move;
         }
     }
 
     public void SpawnMonster()
     {
-        GameObject spawnposition = monsterSpawnPosition[Random.Range(0, monsterSpawnPosition.Count)];
-        MonsterInStage.Clear();
+        spawnposition = monsterSpawnPosition[Random.Range(0, monsterSpawnPosition.Count)];
+        DestroyStageMonster();
 
         for (int i = 0; i < 3; i++)
         {
@@ -76,13 +86,24 @@ public class GameManager : MonoBehaviour
 
     public void bossSpawn()
     {
-        isSpawned = true;
-        MonsterInStage.Clear();
+        DestroyStageMonster();
         GameObject go = Instantiate(DragonPrefab[Random.Range(0, DragonPrefab.Count)]);
-        go.transform.position = BossSpawnPosition.transform.position;
+        spawnposition = BossSpawnPosition;
+        go.transform.position = spawnposition.transform.position;
         go.transform.localScale = bossmonsterSize;
         Monster stat = go.AddComponent<Monster>();
         stat.SetMonster(bossStat);
         MonsterInStage.Add(go);
+    }
+
+    private void DestroyStageMonster()
+    {
+        if(MonsterInStage == null) return;
+
+        foreach(GameObject go in MonsterInStage)
+        {
+            Destroy(go);
+        }
+        MonsterInStage.Clear();
     }
 }

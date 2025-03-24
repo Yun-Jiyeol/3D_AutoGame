@@ -34,6 +34,19 @@ public class Monster : MonoBehaviour
         if (Hp < 0)
         {
             GameManager.instance.player.GetComponent<Player>().GetEx(Ex);
+            switch (gameObject.transform.localScale.x)
+            {
+                case 1.5f: //보스
+                    GameManager.instance.player.GetComponent<Player>().GetGoldDia(Random.Range(GameManager.instance.Stage * 500, GameManager.instance.Stage * 1000), Random.Range(GameManager.instance.Stage * 5, GameManager.instance.Stage * 10));
+                    break;
+                case 3f: //일반
+                    GameManager.instance.player.GetComponent<Player>().GetGoldDia(Random.Range(GameManager.instance.Stage * 10, GameManager.instance.Stage * 20), 0);
+                    break;
+                case 5f: //미니보스
+                    GameManager.instance.player.GetComponent<Player>().GetGoldDia(Random.Range(GameManager.instance.Stage * 50, GameManager.instance.Stage * 100), Random.Range(0, GameManager.instance.Stage));
+                    break;
+            }
+            GameManager.instance.MonsterInStage.Remove(gameObject);
             Destroy(gameObject);
         }
     }
