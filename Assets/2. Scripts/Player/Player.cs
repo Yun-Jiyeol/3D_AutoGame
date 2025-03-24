@@ -7,7 +7,8 @@ public enum PlayerNowMove
 {
     Idle,
     Move,
-    Fight
+    Fight,
+    Dead
 }
 
 public class Player : MonoBehaviour
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
         if (Hp <= 0)
         {
             Hp = 0;
+            playernowmove = PlayerNowMove.Dead;
             //게임 메니저를 통한 액션
         }
         GameManager.instance.uIManager.stat.ChangeHpBar();

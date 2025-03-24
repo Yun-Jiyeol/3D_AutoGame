@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        while(GameManager.instance.player.agent.remainingDistance >= 5f)
+        while(GameManager.instance.player.agent.remainingDistance >= 10f)
         {
             if (GameManager.instance.player.agent.velocity == Vector3.zero)
             {
@@ -27,5 +27,9 @@ public class PlayerMove : MonoBehaviour
 
         GameManager.instance.player.playernowmove = PlayerNowMove.Fight;
         GameManager.instance.player.playerAttack.StartFightPlayer();
+        foreach(GameObject monster in GameManager.instance.MonsterInStage)
+        {
+            monster.GetComponent<Monster>().GetFight();
+        }
     }
 }

@@ -51,4 +51,20 @@ public class Monster : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void GetFight()
+    {
+        StartCoroutine(StartFight());
+    }
+
+    IEnumerator StartFight()
+    {
+        while(GameManager.instance.player.playernowmove == PlayerNowMove.Fight)
+        {
+            yield return new WaitForSeconds(2 / stat.AttackRate);
+            GameObject ball = Instantiate(stat.AttackObject);
+            ball.transform.position = transform.position;
+            ball.GetComponent<AttackBall>().SettingDamage(AttackDamage);
+        }
+    }
 }
