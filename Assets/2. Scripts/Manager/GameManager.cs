@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Player")]
+    [Header("OtherScripts")]
     public Player player;
+    public UIManager uIManager;
 
     [Header("Enemy")]
     public List<GameObject> DragonPrefab;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     private GameObject spawnposition;
 
     [Header("Stage")]
-    public int Stage;
+    public int Stage = 1;
 
     public List<GameObject> MonsterInStage = new List<GameObject>();
 
@@ -40,6 +41,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        uIManager.Setting();
     }
 
     private void Update()

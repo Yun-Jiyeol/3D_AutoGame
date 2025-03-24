@@ -43,9 +43,10 @@ public class Monster : MonoBehaviour
                     GameManager.instance.player.GetComponent<Player>().GetGoldDia(Random.Range(GameManager.instance.Stage * 10, GameManager.instance.Stage * 20), 0);
                     break;
                 case 5f: //미니보스
-                    GameManager.instance.player.GetComponent<Player>().GetGoldDia(Random.Range(GameManager.instance.Stage * 50, GameManager.instance.Stage * 100), Random.Range(0, GameManager.instance.Stage));
+                    GameManager.instance.player.GetComponent<Player>().GetGoldDia(Random.Range(GameManager.instance.Stage * 50, GameManager.instance.Stage * 100), Random.Range(0, GameManager.instance.Stage + 1));
                     break;
             }
+            GameManager.instance.uIManager.wallet.SettingOnStart();
             GameManager.instance.MonsterInStage.Remove(gameObject);
             Destroy(gameObject);
         }

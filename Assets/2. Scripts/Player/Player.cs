@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
             Hp = 0;
             //게임 메니저를 통한 액션
         }
+        GameManager.instance.uIManager.stat.ChangeHpBar();
     }
 
     public void GetEx(int ex)
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour
             Level++;
             MaxEx = (int)(MaxEx * 1.5f);
         }
+        GameManager.instance.uIManager.stat.ChangeLevel();
+        GameManager.instance.uIManager.stat.ChangeExBar();
     }
 
     public void GetGoldDia(int gold, int dia)
