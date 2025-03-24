@@ -11125,6 +11125,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   playermove: {fileID: 0}
   playerAttack: {fileID: 0}
+  animator: {fileID: 2078076994}
   Hp: 500
   MaxHp: 500
   Level: 1
@@ -66168,6 +66169,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073756562}
   m_Mesh: {fileID: 4300174, guid: 4e15996ba1e2f4b4392985ef6ac6b27c, type: 3}
+--- !u!95 &2078076994 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9036980633323257398, guid: 2dfbb63c9cdf7504faf4ff26b0581598,
+    type: 3}
+  m_PrefabInstance: {fileID: 1181313260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2091863802
 GameObject:
   m_ObjectHideFlags: 0

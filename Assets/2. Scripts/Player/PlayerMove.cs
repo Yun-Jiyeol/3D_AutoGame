@@ -25,7 +25,7 @@ public class PlayerMove : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        GameManager.instance.player.playernowmove = PlayerNowMove.Fight;
+        GameManager.instance.player.ChangeStat(PlayerNowMove.Fight);
         GameManager.instance.player.playerAttack.StartFightPlayer();
         foreach(GameObject monster in GameManager.instance.MonsterInStage)
         {

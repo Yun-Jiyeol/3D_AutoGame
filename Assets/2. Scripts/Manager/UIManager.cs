@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
     public PlayerStat stat;
     public PlayerWallet wallet;
 
-    private void Start()
+    private void Awake()
     {
         GameManager.instance.uIManager = this;
     }

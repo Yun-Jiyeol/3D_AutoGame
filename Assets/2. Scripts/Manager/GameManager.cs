@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         if(player.playernowmove == PlayerNowMove.Idle && MonsterInStage.Count != 0)
         {
             player.playermove.ChasePosition(spawnposition.transform.position);
-            player.playernowmove = PlayerNowMove.Move;
+            player.ChangeStat(PlayerNowMove.Move);
         }
     }
 
