@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public PlayerStat stat;
     public PlayerWallet wallet;
+    public Menu menu;
 
     private void Awake()
     {

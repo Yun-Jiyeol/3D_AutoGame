@@ -20,7 +20,7 @@ public class OtherSceneBtn : MonoBehaviour
 
     public void OnClickMenuButton()
     {
-
+        GameManager.instance.uIManager.menu.gameObject.GetComponent<UIInteract>().OpenUI();
     }
 
     public void OnClickMainButton()

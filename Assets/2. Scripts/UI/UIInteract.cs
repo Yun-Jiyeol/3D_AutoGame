@@ -7,10 +7,15 @@ public class UIInteract : MonoBehaviour
     public GameObject UIgameobject;
     Coroutine uicoroutine;
 
+    private void Start()
+    {
+        UIgameobject.SetActive(false);
+    }
+
     public void OpenUI()
     {
         UIgameobject.SetActive(true);
-        transform.localScale = Vector3.zero;
+        transform.localScale = new Vector3(0,0,1);
 
         if (uicoroutine != null) StopCoroutine(uicoroutine);
         uicoroutine = StartCoroutine(OpenUICoroutine());
@@ -20,7 +25,7 @@ public class UIInteract : MonoBehaviour
     {
         while(transform.localScale.x < 1)
         {
-            transform.localScale += new Vector3(0.1f, 0, 0.1f) * Time.deltaTime;
+            transform.localScale += new Vector3(1f, 1f, 0 )* 3f * Time.deltaTime;
             yield return null;
         }
     }
@@ -36,7 +41,7 @@ public class UIInteract : MonoBehaviour
     {
         while (transform.localScale.x >= 0)
         {
-            transform.localScale -= new Vector3(0.1f, 0, 0.1f) * Time.deltaTime;
+            transform.localScale -= new Vector3(1f,  1f, 0) * 3f * Time.deltaTime;
             yield return null;
         }
 
