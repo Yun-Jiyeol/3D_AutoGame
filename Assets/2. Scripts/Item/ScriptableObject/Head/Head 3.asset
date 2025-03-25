@@ -18,6 +18,6 @@ MonoBehaviour:
   Hp: 0
   Attack: 0
   Speed: 0
-  CriticalRate: 41
+  CriticalRate: 40
   PlayerHave: 0
   Upgrade: 1
