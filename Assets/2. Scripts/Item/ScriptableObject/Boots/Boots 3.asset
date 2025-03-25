@@ -20,4 +20,4 @@ MonoBehaviour:
   Speed: 8
   CriticalRate: 0
   PlayerHave: 0
-  Upgrade: 0
+  Upgrade: 1

@@ -11,16 +11,9 @@ public class Inven : MonoBehaviour
     public GameObject Slot;
     public List<GameObject> NowSlots;
 
-    public Button WeaponBtn;
     public Image WeaponImage;
-
-    public Button HeadBtn;
     public Image HeadImage;
-
-    public Button BodyBtn;
     public Image BodyImage;
-
-    public Button BootsBtn;
     public Image BootsImage;
 
     private void Start()
@@ -101,5 +94,44 @@ public class Inven : MonoBehaviour
             go.GetComponent<Slot>().Setting(item);
             NowSlots.Add(go);
         }
+    }
+
+    public void OnClickWeaponBtn()
+    {
+        SubStat(GameManager.instance.player.Weapon);
+        GameManager.instance.player.Weapon = null;
+        SettingAllStat();
+        SettingAllItem();
+    }
+    public void OnClickHeadBtn()
+    {
+        SubStat(GameManager.instance.player.Head);
+        GameManager.instance.player.Head = null;
+        SettingAllStat();
+        SettingAllItem();
+    }
+    public void OnClickBodyBtn()
+    {
+        SubStat(GameManager.instance.player.Body);
+        GameManager.instance.player.Body = null;
+        SettingAllStat();
+        SettingAllItem();
+    }
+    public void OnClickBootsBtn()
+    {
+        SubStat(GameManager.instance.player.Boots);
+        GameManager.instance.player.Boots = null;
+        SettingAllStat();
+        SettingAllItem();
+        GameManager.instance.player.ChangeSpeed();
+    }
+
+    void SubStat(ItemScript _item)
+    {
+        GameManager.instance.player.Hp -= _item.Hp;
+        GameManager.instance.player.MaxHp -= _item.Hp;
+        GameManager.instance.player.AttackDamage -= _item.Attack;
+        GameManager.instance.player.CriticalRate -= _item.CriticalRate;
+        GameManager.instance.player.Speed -= _item.Speed;
     }
 }

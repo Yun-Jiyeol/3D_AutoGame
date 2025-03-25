@@ -17,7 +17,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c83b29b91cf4cbd4b80574692d699716, type: 3}
   Hp: 0
   Attack: 0
-  Speed: 2
+  Speed: 2.2
   CriticalRate: 0
   PlayerHave: 0
-  Upgrade: 0
+  Upgrade: 1
