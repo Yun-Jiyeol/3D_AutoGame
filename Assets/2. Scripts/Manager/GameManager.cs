@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public UIManager uIManager;
     public ItemManager itemManager;
+    public CinemachineVirtualCamera virtualCamera;
 
     [Header("Enemy")]
     public List<GameObject> DragonPrefab;
@@ -32,7 +35,11 @@ public class GameManager : MonoBehaviour
     private GameObject spawnposition;
 
     [Header("Stage")]
+    public UnityEngine.UI.Image StageChangeUI;
+    Coroutine StageChangeCoroutine;
     public int Stage = 1;
+    bool isBossSpawn = false;
+    public bool StageEnd = false;
 
     public List<GameObject> MonsterInStage = new List<GameObject>();
 
@@ -53,8 +60,29 @@ public class GameManager : MonoBehaviour
     {
         if(MonsterInStage.Count == 0)
         {
-            player.playernowmove = PlayerNowMove.Idle;
-            SpawnMonster();
+            if (isBossSpawn)
+            {
+                if (!StageEnd)
+                {
+                    StageEnd = true;
+                    player.playermove.ChasePosition(PlayerEndPosition.transform.position);
+                    player.ChangeStat(PlayerNowMove.Move);
+                }
+            }
+            else
+            {
+                player.playernowmove = PlayerNowMove.Idle;
+                SpawnMonster();
+            }
+        }
+
+        if (player.transform.position.z >= 10)
+        {
+            virtualCamera.Priority = 20;
+        }
+        else
+        {
+            virtualCamera.Priority = 5;
         }
     }
 
@@ -93,6 +121,9 @@ public class GameManager : MonoBehaviour
 
     public void bossSpawn()
     {
+        if(isBossSpawn) return;
+        isBossSpawn = true;
+
         DestroyStageMonster();
         GameObject go = Instantiate(DragonPrefab[Random.Range(0, DragonPrefab.Count)]);
         spawnposition = BossSpawnPosition;
@@ -101,6 +132,9 @@ public class GameManager : MonoBehaviour
         Monster stat = go.AddComponent<Monster>();
         stat.SetMonster(bossStat);
         MonsterInStage.Add(go);
+
+        player.playermove.ChasePosition(spawnposition.transform.position);
+        player.ChangeStat(PlayerNowMove.Move);
     }
 
     private void DestroyStageMonster()
@@ -112,5 +146,37 @@ public class GameManager : MonoBehaviour
             Destroy(go);
         }
         MonsterInStage.Clear();
+    }
+
+    public void ChangeStage(int num)
+    {
+        if (StageChangeCoroutine != null) return;
+        StageChangeCoroutine = StartCoroutine(ChangeStageCoroutine());
+        Stage += num;
+    }
+
+    IEnumerator ChangeStageCoroutine()
+    {
+        while(StageChangeUI.color.a <= 1)
+        {
+            StageChangeUI.color += new Color(0,0,0,1) * Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        player.transform.position = PlayerStartPosition.transform.position;
+        player.playermove.ChasePosition(PlayerStartPosition.transform.position);
+
+        yield return new WaitForSeconds(1f);
+
+        while (StageChangeUI.color.a > 0)
+        {
+            StageChangeUI.color -= new Color(0, 0, 0, 1) * Time.deltaTime;
+            yield return null;
+        }
+
+        isBossSpawn = false;
+        StageEnd = false;
     }
 }

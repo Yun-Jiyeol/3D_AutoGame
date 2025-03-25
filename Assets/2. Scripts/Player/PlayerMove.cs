@@ -5,9 +5,12 @@ using UnityEngine.AI;
 
 public class PlayerMove : MonoBehaviour
 {
+    Coroutine MoveCoroutine;
+
     public void ChasePosition(Vector3 targetposition)
     {
-        StartCoroutine(CoroutineChasePosition(targetposition));
+        if (MoveCoroutine != null) StopCoroutine(MoveCoroutine);
+        MoveCoroutine = StartCoroutine(CoroutineChasePosition(targetposition));
     }
 
     IEnumerator CoroutineChasePosition(Vector3 targetposition)
@@ -25,11 +28,19 @@ public class PlayerMove : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        GameManager.instance.player.ChangeStat(PlayerNowMove.Fight);
-        GameManager.instance.player.playerAttack.StartFightPlayer();
-        foreach(GameObject monster in GameManager.instance.MonsterInStage)
+        if (GameManager.instance.StageEnd)
         {
-            monster.GetComponent<Monster>().GetFight();
+            GameManager.instance.player.ChangeStat(PlayerNowMove.Idle);
+            GameManager.instance.ChangeStage(1);
+        }
+        else
+        {
+            GameManager.instance.player.ChangeStat(PlayerNowMove.Fight);
+            GameManager.instance.player.playerAttack.StartFightPlayer();
+            foreach (GameObject monster in GameManager.instance.MonsterInStage)
+            {
+                monster.GetComponent<Monster>().GetFight();
+            }
         }
     }
 }

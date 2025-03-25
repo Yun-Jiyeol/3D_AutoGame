@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class UIManager : MonoBehaviour
     public PlayerWallet wallet;
     public Menu menu;
     public Inven inven;
+    public Image ChangeScene;
 
     private void Awake()
     {

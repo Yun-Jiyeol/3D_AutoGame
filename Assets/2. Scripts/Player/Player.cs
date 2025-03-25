@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
             //게임 메니저를 통한 액션
         }
         GameManager.instance.uIManager.stat.ChangeHpBar();
+        GameManager.instance.uIManager.inven.SettingAllStat();
     }
 
     public void GetEx(int ex)
@@ -127,6 +128,7 @@ public class Player : MonoBehaviour
         {
             Hp += MaxHp * 0.01f;
             if(Hp >= MaxHp) Hp = MaxHp;
+            GameManager.instance.uIManager.inven.SettingAllStat();
 
             yield return new WaitForSeconds(5f);
         }
