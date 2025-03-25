@@ -13,11 +13,17 @@ public class AttackBall : MonoBehaviour
         rocation = GameManager.instance.player.transform.position - transform.position;
 
         StartCoroutine(AttackPlayer());
+        Invoke("DeleteOnSky", 10f);
     }
 
     public void SettingDamage(float _damage)
     {
         Damage = _damage;
+    }
+
+    void DeleteOnSky()
+    {
+        Destroy(gameObject);
     }
 
     IEnumerator AttackPlayer()
