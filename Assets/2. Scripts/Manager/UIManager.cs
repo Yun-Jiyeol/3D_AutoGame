@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public PlayerStat stat;
     public PlayerWallet wallet;
     public Menu menu;
+    public Inven inven;
 
     private void Awake()
     {

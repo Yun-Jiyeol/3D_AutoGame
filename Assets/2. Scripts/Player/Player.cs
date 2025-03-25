@@ -36,6 +36,12 @@ public class Player : MonoBehaviour
     public int Gold;
     public int Dia;
 
+    [Header("Item")]
+    public ItemScript Weapon;
+    public ItemScript Head;
+    public ItemScript Body;
+    public ItemScript Boots;
+
     private void Start()
     {
         GameManager.instance.player = this;
