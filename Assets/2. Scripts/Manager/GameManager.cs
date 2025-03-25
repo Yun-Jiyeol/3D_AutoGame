@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public UnityEngine.UI.Image StageChangeUI;
     Coroutine StageChangeCoroutine;
     public int Stage = 1;
+    public int MaxStage = 1;
     bool isBossSpawn = false;
     public bool StageEnd = false;
 
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                StageEnd = false;
                 player.playernowmove = PlayerNowMove.Idle;
                 SpawnMonster();
             }
@@ -153,6 +155,11 @@ public class GameManager : MonoBehaviour
         if (StageChangeCoroutine != null) return;
         StageChangeCoroutine = StartCoroutine(ChangeStageCoroutine());
         Stage += num;
+        uIManager.menu.SettingStageNum();
+        if (MaxStage < Stage)
+        {
+            MaxStage = Stage;
+        }
     }
 
     IEnumerator ChangeStageCoroutine()
@@ -177,6 +184,5 @@ public class GameManager : MonoBehaviour
         }
 
         isBossSpawn = false;
-        StageEnd = false;
     }
 }
