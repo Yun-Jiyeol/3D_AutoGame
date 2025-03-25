@@ -24,29 +24,30 @@ public class Slot : MonoBehaviour
         switch (item.itemType)
         {
             case ItemType.Boots:
-                SubStat(GameManager.instance.player.Boots);
+                if(GameManager.instance.player.Boots != null) SubStat(GameManager.instance.player.Boots);
                 GameManager.instance.player.Boots = item;
                 AddStat();
+                GameManager.instance.player.ChangeSpeed();
                 break;
             case ItemType.Head:
-                SubStat(GameManager.instance.player.Head);
+                if (GameManager.instance.player.Head != null) SubStat(GameManager.instance.player.Head);
                 GameManager.instance.player.Head = item;
                 AddStat();
                 break;
             case ItemType.Body:
-                SubStat(GameManager.instance.player.Body);
+                if (GameManager.instance.player.Body != null) SubStat(GameManager.instance.player.Body);
                 GameManager.instance.player.Body = item;
                 AddStat();
                 break;
             case ItemType.Weapon:
-                SubStat(GameManager.instance.player.Weapon);
+                if (GameManager.instance.player.Weapon != null) SubStat(GameManager.instance.player.Weapon);
                 GameManager.instance.player.Weapon = item;
                 AddStat();
                 break;
         }
 
-        GameManager.instance.uIManager.inven.SettingAllStat();
         GameManager.instance.uIManager.inven.SettingAllItem();
+        GameManager.instance.uIManager.inven.SettingAllStat();
     }
 
     void AddStat()
@@ -55,7 +56,7 @@ public class Slot : MonoBehaviour
         GameManager.instance.player.MaxHp += item.Hp;
         GameManager.instance.player.AttackDamage += item.Attack;
         GameManager.instance.player.CriticalRate += item.CriticalRate;
-        GameManager.instance.player.Speed += item.Attack;
+        GameManager.instance.player.Speed += item.Speed;
     }
 
     void SubStat(ItemScript _item)
@@ -64,6 +65,6 @@ public class Slot : MonoBehaviour
         GameManager.instance.player.MaxHp -= _item.Hp;
         GameManager.instance.player.AttackDamage -= _item.Attack;
         GameManager.instance.player.CriticalRate -= _item.CriticalRate;
-        GameManager.instance.player.Speed -= _item.Attack;
+        GameManager.instance.player.Speed -= _item.Speed;
     }
 }

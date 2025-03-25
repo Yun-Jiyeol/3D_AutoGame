@@ -52,7 +52,14 @@ public class Player : MonoBehaviour
         playermove = GetComponent<PlayerMove>();
         playerAttack = GetComponent<PlayerAttack>();
 
-        animator.SetFloat("Speed", Speed * 0.1f);
+        animator.SetFloat("Speed", Speed);
+        StartCoroutine(Regeneration());
+    }
+
+    public void ChangeSpeed()
+    {
+        animator.SetFloat("Speed", Speed);
+        agent.speed = Speed;
     }
 
     public void GetDamage(float damage)
@@ -111,6 +118,17 @@ public class Player : MonoBehaviour
                 animator.SetBool("@Move", false);
                 animator.SetBool("@Dead", true);
                 break;
+        }
+    }
+
+    IEnumerator Regeneration()
+    {
+        while (playernowmove != PlayerNowMove.Dead)
+        {
+            Hp += MaxHp * 0.01f;
+            if(Hp >= MaxHp) Hp = MaxHp;
+
+            yield return new WaitForSeconds(5f);
         }
     }
 }

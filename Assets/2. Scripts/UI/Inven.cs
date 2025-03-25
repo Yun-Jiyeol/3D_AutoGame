@@ -9,6 +9,7 @@ public class Inven : MonoBehaviour
     public List<TextMeshProUGUI> playerstats;
     public GameObject SlotSpawnPosition;
     public GameObject Slot;
+    public List<GameObject> NowSlots;
 
     public Button WeaponBtn;
     public Image WeaponImage;
@@ -54,12 +55,27 @@ public class Inven : MonoBehaviour
 
     public void SettingInven()
     {
-        foreach(ItemScript item in GameManager.instance.itemManager.Head)
+        if(NowSlots != null)
+        {
+            foreach(GameObject slots in NowSlots)
+            {
+                Destroy(slots);
+            }
+        }
+
+        NowSlots.Clear();
+        FullInvenUI();
+    }
+
+    void FullInvenUI()
+    {
+        foreach (ItemScript item in GameManager.instance.itemManager.Head)
         {
             GameObject go = Instantiate(Slot);
             go.transform.SetParent(SlotSpawnPosition.transform);
             go.transform.localScale = Vector3.one;
             go.GetComponent<Slot>().Setting(item);
+            NowSlots.Add(go);
         }
         foreach (ItemScript item in GameManager.instance.itemManager.Boots)
         {
@@ -67,6 +83,7 @@ public class Inven : MonoBehaviour
             go.transform.SetParent(SlotSpawnPosition.transform);
             go.transform.localScale = Vector3.one;
             go.GetComponent<Slot>().Setting(item);
+            NowSlots.Add(go);
         }
         foreach (ItemScript item in GameManager.instance.itemManager.Body)
         {
@@ -74,6 +91,7 @@ public class Inven : MonoBehaviour
             go.transform.SetParent(SlotSpawnPosition.transform);
             go.transform.localScale = Vector3.one;
             go.GetComponent<Slot>().Setting(item);
+            NowSlots.Add(go);
         }
         foreach (ItemScript item in GameManager.instance.itemManager.Weapon)
         {
@@ -81,6 +99,7 @@ public class Inven : MonoBehaviour
             go.transform.SetParent(SlotSpawnPosition.transform);
             go.transform.localScale = Vector3.one;
             go.GetComponent<Slot>().Setting(item);
+            NowSlots.Add(go);
         }
     }
 }
