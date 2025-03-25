@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("OtherScripts")]
     public Player player;
     public UIManager uIManager;
+    public ItemManager itemManager;
 
     [Header("Enemy")]
     public List<GameObject> DragonPrefab;

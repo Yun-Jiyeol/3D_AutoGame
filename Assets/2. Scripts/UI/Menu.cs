@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    public void OnClickExitBtn()
-    {
-        gameObject.GetComponent<UIInteract>().CloseUI();
-    }
 
     public void OnClickGameOffBtn()
     {

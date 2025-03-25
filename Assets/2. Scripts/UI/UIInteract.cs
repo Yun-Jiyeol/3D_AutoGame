@@ -6,6 +6,7 @@ public class UIInteract : MonoBehaviour
 {
     public GameObject UIgameobject;
     Coroutine uicoroutine;
+    bool isOn = false;
 
     private void Start()
     {
@@ -14,6 +15,9 @@ public class UIInteract : MonoBehaviour
 
     public void OpenUI()
     {
+        if (isOn) return;
+        isOn = true;
+
         UIgameobject.SetActive(true);
         transform.localScale = new Vector3(0,0,1);
 
@@ -32,6 +36,9 @@ public class UIInteract : MonoBehaviour
 
     public void CloseUI()
     {
+        if (!isOn) return;
+        isOn = false;
+
         transform.localScale = Vector3.one;
 
         if (uicoroutine != null) StopCoroutine(uicoroutine);
