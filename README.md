@@ -20,7 +20,7 @@
 
 4. 사용 에셋
 
--https://assetstore.unity.com/packages/3d/characters/humanoids/rpg-tiny-hero-duo-pbr-polyart-225148
--https://assetstore.unity.com/packages/3d/characters/creatures/dragon-for-boss-monster-hp-79398
--https://assetstore.unity.com/packages/3d/characters/little-ghost-lowpoly-free-271926
--https://assetstore.unity.com/packages/3d/environments/dungeons/blue-dungeon-106912
+https://assetstore.unity.com/packages/3d/characters/humanoids/rpg-tiny-hero-duo-pbr-polyart-225148
+https://assetstore.unity.com/packages/3d/characters/creatures/dragon-for-boss-monster-hp-79398
+https://assetstore.unity.com/packages/3d/characters/little-ghost-lowpoly-free-271926
+https://assetstore.unity.com/packages/3d/environments/dungeons/blue-dungeon-106912
