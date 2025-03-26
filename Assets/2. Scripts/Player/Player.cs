@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public NavMeshAgent agent;
     public PlayerMove playermove;
     public PlayerAttack playerAttack;
-    public Animator animator;  
+    public Animator animator;
 
     [Header("Stat")]
     public float Hp;
@@ -71,6 +71,12 @@ public class Player : MonoBehaviour
             ChangeStat(PlayerNowMove.Dead);
             //게임 메니저를 통한 액션
         }
+
+        GameObject go = Instantiate(GameManager.instance.DamageUI);
+        go.transform.SetParent(transform, false);
+        go.GetComponent<RectTransform>().transform.localPosition = new Vector3(Random.Range(-1f,1f),4,0);
+        go.GetComponent<DamageUI>().SettingDamage(damage);
+
         GameManager.instance.uIManager.stat.ChangeHpBar();
         GameManager.instance.uIManager.inven.SettingAllStat();
     }

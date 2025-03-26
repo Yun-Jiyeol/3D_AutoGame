@@ -31,6 +31,12 @@ public class Monster : MonoBehaviour
     {
         Hp -= damage;
 
+        GameObject go = Instantiate(GameManager.instance.DamageUI);
+        go.transform.SetParent(transform, false);
+        go.GetComponent<RectTransform>().transform.localScale = new Vector3(1 / gameObject.transform.localScale.x, 1 / gameObject.transform.localScale.y, 1 / gameObject.transform.localScale.z);
+        go.GetComponent<RectTransform>().transform.localPosition = new Vector3(Random.Range(-1f, 1f), 1, 0);
+        go.GetComponent<DamageUI>().SettingDamage(damage);
+
         if (Hp < 0)
         {
             GameManager.instance.player.GetComponent<Player>().GetEx(Ex);

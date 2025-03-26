@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public UIManager uIManager;
     public ItemManager itemManager;
     public CinemachineVirtualCamera virtualCamera;
+    public GameObject DamageUI;
 
     [Header("Enemy")]
     public List<GameObject> DragonPrefab;

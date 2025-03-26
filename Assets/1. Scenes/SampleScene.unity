@@ -11499,6 +11499,8 @@ MonoBehaviour:
   playermove: {fileID: 0}
   playerAttack: {fileID: 0}
   animator: {fileID: 2078076994}
+  DamageUI: {fileID: 9157231971070091396, guid: 56236667b8fe12b4cb40a462e94890b7,
+    type: 3}
   Hp: 500
   MaxHp: 500
   Level: 1
@@ -15088,7 +15090,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.46545285, y: 0.33056918, z: -0.19279692, w: 0.79806453}
+  m_LocalRotation: {x: 0.4654529, y: 0.33056915, z: -0.19279687, w: 0.7980646}
   m_LocalPosition: {x: -48, y: 25.5, z: -68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24633,6 +24635,8 @@ MonoBehaviour:
   uIManager: {fileID: 0}
   itemManager: {fileID: 0}
   virtualCamera: {fileID: 589295014}
+  DamageUI: {fileID: 9157231971070091396, guid: 56236667b8fe12b4cb40a462e94890b7,
+    type: 3}
   DragonPrefab:
   - {fileID: 100720, guid: 8252519d2c6fd014bb5f75765a8c4fda, type: 3}
   - {fileID: 170346, guid: 88e480c990c9d6a458b5fc85fe1da2aa, type: 3}
@@ -63264,7 +63268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733784609}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.46545285, y: 0.33056918, z: -0.19279692, w: 0.79806453}
+  m_LocalRotation: {x: 0.4654529, y: 0.33056915, z: -0.19279687, w: 0.7980646}
   m_LocalPosition: {x: -48, y: 25.5, z: -68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
