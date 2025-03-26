@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
                 animator.SetBool("@Battle", false);
                 animator.SetBool("@Move", false);
                 animator.SetBool("@Dead", true);
+                GameManager.instance.DeadPlayer();
                 break;
         }
     }

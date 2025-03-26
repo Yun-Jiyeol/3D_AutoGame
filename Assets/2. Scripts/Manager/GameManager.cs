@@ -151,6 +151,16 @@ public class GameManager : MonoBehaviour
         MonsterInStage.Clear();
     }
 
+    public void DeadPlayer()
+    {
+        Invoke("InvokeDeadPlayer", 5f);
+    }
+
+    void InvokeDeadPlayer()
+    {
+        ChangeStage(0);
+    }
+
     public void ChangeStage(int num)
     {
         if (StageChangeCoroutine != null) return;
